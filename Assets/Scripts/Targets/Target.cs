@@ -6,30 +6,67 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
+
+
     public int Bounty = 10;
+    public int SecondsToRespawn = 5;
 
-
+    private const int maxHP = 100;
     private int currentHP = 100;
+
+    private Material mainMaterial;
+
+    private Renderer meshRenderer;
+
+    private void Awake()
+    {
+        meshRenderer = GetComponent<MeshRenderer>();
+
+        mainMaterial = meshRenderer.material;
+    }
+
+    public float RandomNumber() => Random.Range(0, 1);
+
+    private void OnEnable()
+    {
+        transform.DOMoveX(Random.Range(-10, 15), 3).SetEase(Ease.InOutCubic).SetLoops(-1, LoopType.Yoyo);
+
+    }
 
     public void GetDamage(int damage)
     {
-        transform.DOScale(1.5f, 0.2f).SetLoops(2, LoopType.Yoyo);
-        
+        mainMaterial.DOColor(Color.white, 0.05f).SetLoops(2, LoopType.Yoyo).SetEase(Ease.InOutBounce).OnComplete(()=>
+        {
+            Debug.Log("color changed");
+        });
+
+        transform.DOScale(damage % 10 + 1, 0.1f).SetLoops(2, LoopType.Yoyo);
+
+
         Debug.Log(damage +"was taken");
 
         currentHP -= damage;
 
         if (currentHP <= 0)
-            gameObject.SetActive(false);
+            Death();
     }
 
     private void Death()
     {
-        //add some logic too get xp
+        GameHandler.GameInstance.uiModule.SetScore(20);
 
         gameObject.SetActive(false);
 
+        StartCoroutine(RespawnTimer());
     }
 
+    private IEnumerator RespawnTimer()
+    {
+        yield return new WaitForSeconds(SecondsToRespawn);
+
+        currentHP = maxHP;
+
+        gameObject.SetActive(true);
+    }
 
 }

@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class GameHandler : MonoBehaviour
 {
+    public static GameHandler GameInstance;
+    
     public PlayerInput InputModule;
     public Rotatebase RotationModule;
     public ShootBase shootModule;
 
     public UI uiModule;
+
+    void Awake()
+    {
+        GameInstance = this;  
+    }
 
     public void Update()
     {
@@ -25,11 +32,4 @@ public class GameHandler : MonoBehaviour
             shootModule.Shoot();
         }
     }
-
-    public void SetScoreOnUI(int score)
-    {
-        uiModule.SetScore("Score:" + score);
-
-    }
-
 }

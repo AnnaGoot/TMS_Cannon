@@ -185,7 +185,7 @@ MonoBehaviour:
   InputModule: {fileID: 232769715}
   RotationModule: {fileID: 335319219}
   shootModule: {fileID: 335319221}
-  uiModule: {fileID: 0}
+  uiModule: {fileID: 1996005870}
 --- !u!4 &331884266
 Transform:
   m_ObjectHideFlags: 0
@@ -1357,6 +1357,7 @@ GameObject:
   - component: {fileID: 1996005868}
   - component: {fileID: 1996005867}
   - component: {fileID: 1996005866}
+  - component: {fileID: 1996005870}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1446,6 +1447,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1996005870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1996005865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0054c7a2452cbb0458752a9a68407d81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 2082677188}
 --- !u!1 &2082677186
 GameObject:
   m_ObjectHideFlags: 0

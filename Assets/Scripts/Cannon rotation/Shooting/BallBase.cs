@@ -24,6 +24,7 @@ public class BallBase : MonoBehaviour
     private IEnumerator TimerToDisable()
     {
         yield return new WaitForSeconds(3);
+
         gameObject.SetActive(false);
     }
 
@@ -31,7 +32,8 @@ public class BallBase : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent<Target>(out var target))
         {
-            target.GetDamage(Random.Range(5, 25));
+            target.GetDamage(Random.Range(5, 15));
+
             gameObject.SetActive(false);
         }
     }
