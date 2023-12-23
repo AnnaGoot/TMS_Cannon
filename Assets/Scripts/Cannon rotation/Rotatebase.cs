@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Rotatebase : RotateAxis
@@ -8,6 +10,9 @@ public class Rotatebase : RotateAxis
 
     [SerializeField]
     private Vector2 current;
+
+    [SerializeField] private RotationRange rotationRange;
+
 
     void Awake()
     {
@@ -20,7 +25,23 @@ public class Rotatebase : RotateAxis
     }
     public override void Rotate(Vector2 vector)
     {
+        vector.y = rotationRange.IsMax(current.y + vector.y) ? vector.y : 0;
+
         current += vector;
         ApplyRotation();
     }
+}
+
+[Serializable] 
+public struct RotationRange
+{
+    public float min;
+
+    public float max;
+
+    public bool IsMax(float value)
+    {
+        return value >= min && value <= max;
+    }
+
 }
