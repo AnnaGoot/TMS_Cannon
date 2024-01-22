@@ -21,7 +21,7 @@ public class Rotatebase : RotateAxis
 
     void ApplyRotation()
     {
-        axis.rotation = Quaternion.Euler(current.y * 100, current.x, 0);
+        axis.rotation = Quaternion.Euler(current.y * 100, current.x / 3, 0);
     }
     public override void Rotate(Vector2 vector)
     {
